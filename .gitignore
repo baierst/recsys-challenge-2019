@@ -1,2 +1,4 @@
+.*
 data/
 recsys_env/
+!.gitignore
