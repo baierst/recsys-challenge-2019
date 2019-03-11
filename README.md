@@ -4,7 +4,7 @@
 
 Download the data from Slack and store under `data`
 
-## Installation and usage
+### Installation
 
 Create a virtual environment:
 
