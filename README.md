@@ -13,6 +13,10 @@ Install the package:
 
     pip install -e .
     
+Add jupyter kernel
+
+    ipython kernel install --name=recsys_env
+    
 ### Getting started notebook
 
 Checkout the `notebooks/getting_started.ipynb` to get familiar with the data and the task.
