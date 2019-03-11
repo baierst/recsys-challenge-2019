@@ -1,4 +1,6 @@
-# Get the data
+# Getting started
+
+### Get the data
 
 Download the data from Slack and store under `data`
 
