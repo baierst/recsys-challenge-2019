@@ -7,7 +7,7 @@ Download the data from Slack and store under `data`
 Create a virtual environment:
 
     python3 -m venv recsys_env
-    source trvrecsys2019/bin/activate
+    source recsys_env/bin/activate
 
 Install the package:
 
