@@ -2,11 +2,9 @@ from pathlib import Path
 
 import click
 import pandas as pd
+from recsys.config import Config
 
 from . import functions as f
-
-current_directory = Path(__file__).absolute().parent
-default_data_directory = current_directory.joinpath('..', '..', 'data')
 
 
 @click.command()
@@ -15,7 +13,10 @@ default_data_directory = current_directory.joinpath('..', '..', 'data')
 @click.option('--test-file', default='test.csv', help='Test CSV file')
 def main(data_path, submission_file, test_file):
 
+    config = Config()
+
     # calculate path to files
+    default_data_directory = config.data_path
     data_directory = Path(data_path) if data_path else default_data_directory
     test_csv = data_directory.joinpath(test_file)
     subm_csv = data_directory.joinpath(submission_file)
