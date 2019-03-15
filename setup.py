@@ -17,8 +17,8 @@ setup(
     install_requires=requirements_list,
     entry_points={
         'console_scripts': [
-            'rec-popular=recsys.algorithms.baseline_algorithm.rec_popular:main',
-            'rec-price=recsys.algorithms.price_algorithm.rec_price:main',
+            'rec-popular=recsys.algorithms.baseline_algorithm.main_rec_popular:main',
+            'rec-price=recsys.algorithms.price_algorithm.main_rec_price:main',
             'verify-submission=recsys.submission.verify_submission.verify_subm:main',
             'score-submission=recsys.submission.score_submission.score_subm:main'
         ],
