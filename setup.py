@@ -1,24 +1,30 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""
-    Setup file for recsys-challange-2019.
-    Use setup.cfg to configure your project.
+from setuptools import setup, find_packages
 
-    This file was generated with PyScaffold 3.1.
-    PyScaffold helps you to put up the scaffold of your new Python project.
-    Learn more under: https://pyscaffold.org/
-"""
-import sys
+requirements_list = [
+    "numpy>=1.16.2",
+    "pandas>=0.24.1",
+    "click>=7.0",
+    "jupyter>=1.0.0",
+    "ipykernel>=5.1.0"
+]
 
-from pkg_resources import require, VersionConflict
-from setuptools import setup
-
-try:
-    require('setuptools>=38.3')
-except VersionConflict:
-    print("Error: version of setuptools is too old (<38.3)!")
-    sys.exit(1)
-
-
-if __name__ == "__main__":
-    setup(use_pyscaffold=True)
+setup(
+    name='recsys',
+    version='1.0',
+    description="Recsys Challenge",
+    long_description="Code for the Recsys Challenge",
+    packages=find_packages(),
+    install_requires=requirements_list,
+    entry_points={
+        'console_scripts': [
+            'rec-popular=recsys.algorithms.baseline_algorithm.rec_popular:main',
+            'rec-price=recsys.algorithms.price_algorithm.rec_price:main',
+            'verify-submission=recsys.submission.verify_submission.verify_subm:main',
+            'score-submission=recsys.submission.score_submission.score_subm:main'
+        ],
+    },
+    zip_safe=False,
+    classifiers=[
+        'Programming Language :: Python :: 3.6'
+    ]
+)
