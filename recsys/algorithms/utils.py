@@ -15,11 +15,20 @@ def get_submission_target(df):
     return df_out
 
 
-def string_to_array(s):
+def get_local_submission_target(df):
+    """Identify target rows which have a ground truth."""
+
+    mask = ~df["reference"].isnull() & (df["action_type"] == "clickout item")
+    df_out = df[mask]
+
+    return df_out
+
+
+def string_to_array(s, separator="|"):
     """Convert pipe separated string to array."""
 
     if isinstance(s, str):
-        out = s.split("|")
+        out = s.split(separator)
     elif math.isnan(s):
         out = []
     else:
@@ -27,7 +36,7 @@ def string_to_array(s):
     return out
 
 
-def explode(df_in: pd.DataFrame, cols_expl: List[str])->pd.DataFrame:
+def explode(df_in: pd.DataFrame, cols_expl: List[str], orders=False)->pd.DataFrame:
     """Explode column col_expl of array type into multiple rows."""
 
     if type(cols_expl) != list:
@@ -45,6 +54,10 @@ def explode(df_in: pd.DataFrame, cols_expl: List[str])->pd.DataFrame:
     )
 
     for col_expl in cols_expl:
+
+        if orders:
+            df_out.loc[:, f'orders_{col_expl}'] = np.concatenate([range(len(entry)) for entry in df[col_expl].values])
+
         df_out.loc[:, col_expl] = np.concatenate(df[col_expl].values)
         df_out.loc[:, col_expl] = df_out[col_expl].apply(int)
 
